@@ -3,6 +3,7 @@ package pl.assolution.rocks;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -18,6 +19,7 @@ import java.util.HashMap;
 
 public class LoginActivity extends Activity {
 
+    private static final String USER = "user";
     JSONParser jsonParser = new JSONParser();
     private ProgressDialog progressDialog;
     private static String url_login_user = "http://student.agh.edu.pl/~aszczure/loginUser.php";
@@ -68,6 +70,7 @@ public class LoginActivity extends Activity {
         });
     }
     private void login(String login, String password) {
+
         final AsyncTask<String, Integer, Boolean> task = new AsyncTask<String, Integer, Boolean>() {
             @Override
             protected Boolean doInBackground(String... strings) {
@@ -95,6 +98,11 @@ public class LoginActivity extends Activity {
             protected void onPostExecute(Boolean result) {
                 super.onPostExecute(result);
                 if(result) {
+
+                    SharedPreferences.Editor editor = getSharedPreferences(USER, MODE_PRIVATE).edit();
+                    editor.putString(USER, user_name);
+                    editor.commit();
+
                     Toast.makeText(getApplicationContext(),"Zalogowano jako "+user_name, Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                     intent.putExtra("userName", user_name);

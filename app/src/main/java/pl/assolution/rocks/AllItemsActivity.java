@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,7 +31,6 @@ public class AllItemsActivity extends AppCompatActivity {
     private SimplyItem.ItemsList list = new SimplyItem.ItemsList();
     private Bitmap imageBitmap = null;
     private ItemsAdapter itemsAdapter;
-    private String id_rock;
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_ITEMS = "item";
     private static final String TAG_ID_ROCK= "id_rock";
@@ -50,16 +50,19 @@ public class AllItemsActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar =  getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.addOnItemTouchListener(new RecyclerViewOnItemClickListener(getApplicationContext(), recyclerView, new RecyclerViewOnItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Toast.makeText(getApplicationContext(),"Kliknieta", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), AddItemActivity.class);
-                intent.putExtra(TAG_ID_ROCK, id_rock);
+                TextView tv = (TextView) view.findViewById(R.id.id_rock_tv);
+                String id = tv.getText().toString();
+                Intent intent = new Intent(getApplicationContext(), ItemInfoActivity.class);
+                intent.putExtra(TAG_ID_ROCK, id);
                 startActivityForResult(intent, 100);
             }
 
@@ -99,7 +102,7 @@ public class AllItemsActivity extends AppCompatActivity {
                         for (int i = 0; i < items.length(); i++) {
                             JSONObject c = items.getJSONObject(i);
 
-                            id_rock = c.getString(TAG_ID_ROCK);
+                            String id_rock = c.getString(TAG_ID_ROCK);
                             String designation = c.getString(TAG_DESIGNATION);
                             String description = c.getString(TAG_DESCRIPTION);
                             String author = c.getString(TAG_AUTHOR);

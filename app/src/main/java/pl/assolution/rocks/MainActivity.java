@@ -1,7 +1,9 @@
 package pl.assolution.rocks;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -12,9 +14,10 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String USER = "user";
     private Button viewAll;
     private Button addItem;
-    public String userName;
+    private String userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +28,14 @@ public class MainActivity extends AppCompatActivity {
 
         Intent loginIntent = getIntent();
         userName = loginIntent.getStringExtra("userName");
+
+
+//        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+//        SharedPreferences.Editor edit = sharedPreferences.edit();
+
+
+//        edit.putString(USER, userName);
+//        edit.apply();
 
         viewAll = (Button) findViewById(R.id.view_all_btn);
         addItem = (Button) findViewById(R.id.add_item_btn);
@@ -41,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),AddItemActivity.class);
-                //startActivity(intent);
+                startActivity(intent);
             }
         });
 

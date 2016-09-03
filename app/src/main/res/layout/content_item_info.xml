@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="pl.assolution.rocks.ItemInfoActivity"
+    tools:showIn="@layout/activity_item_info">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:rowCount="11"
+        android:columnCount="2">
+
+        <ImageView
+            android:id="@+id/rock_image_info"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_columnSpan="2"
+            android:layout_width="330dp"
+            android:layout_height="300dp"
+            android:src="@drawable/arrow_back"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/designation_info_tv"
+            android:layout_column="0"
+            android:layout_row="1"
+            android:layout_gravity="fill"
+            android:padding="7dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="10dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="Rozpoznanie:"/>
+
+        <TextView
+            android:id="@+id/designation_content_info__tv"
+            android:layout_column="1"
+            android:layout_row="1"
+            android:padding="7dp"
+            android:layout_marginTop="2dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill"
+            android:textSize="16sp"
+            android:width="0dp"
+            android:text="Krzemień"/>
+
+        <TextView
+            android:id="@+id/type_info_tv"
+            android:layout_column="0"
+            android:layout_row="2"
+            android:layout_gravity="fill"
+            android:padding="7dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="10dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="Typ:"/>
+
+        <TextView
+            android:id="@+id/type_content_info_tv"
+            android:layout_column="1"
+            android:layout_row="2"
+            android:padding="7dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill"
+            android:textSize="16sp"
+            android:width="0dp"
+            android:text="Osadowa"/>
+
+        <TextView
+            android:id="@+id/color_info_tv"
+            android:layout_column="0"
+            android:layout_row="3"
+            android:layout_gravity="fill"
+            android:padding="7dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="10dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="Kolor:"/>
+
+        <TextView
+            android:id="@+id/color_content_info_tv"
+            android:layout_column="1"
+            android:layout_row="3"
+            android:padding="7dp"
+            android:width="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill"
+            android:textSize="16sp"
+            android:text="brązowy, pomarańczowy, żółty, brunatny"/>
+
+        <TextView
+            android:id="@+id/structure_info_tv"
+            android:layout_column="0"
+            android:layout_row="4"
+            android:layout_gravity="fill"
+            android:padding="7dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="10dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="Struktura:"/>
+
+        <TextView
+            android:id="@+id/structure_content_info_tv"
+            android:layout_column="1"
+            android:layout_row="4"
+            android:padding="7dp"
+            android:width="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill"
+            android:textSize="16sp"
+            android:text="zbita, bezładna"/>
+
+        <TextView
+            android:id="@+id/texture_info_tv"
+            android:layout_column="0"
+            android:layout_row="5"
+            android:layout_gravity="fill"
+            android:padding="7dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="10dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="Tekstura:"/>
+
+        <TextView
+            android:id="@+id/texture_content_info_tv"
+            android:layout_column="1"
+            android:layout_row="5"
+            android:padding="7dp"
+            android:width="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill"
+            android:textSize="16sp"
+            android:text="krzemieniowata"/>
+
+        <TextView
+            android:id="@+id/composition_info_tv"
+            android:layout_column="0"
+            android:layout_row="6"
+            android:layout_gravity="fill"
+            android:padding="7dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="10dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="Skład:"/>
+
+        <TextView
+            android:id="@+id/composition_content_info_tv"
+            android:layout_column="1"
+            android:layout_row="6"
+            android:padding="7dp"
+            android:width="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill"
+            android:textSize="16sp"
+            android:text="skalenie, amfibole, muskowit, granaty, kwarc, krzemionka"/>
+
+        <TextView
+            android:id="@+id/binder_info_tv"
+            android:layout_column="0"
+            android:layout_row="7"
+            android:layout_gravity="fill"
+            android:padding="7dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="10dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="Spoiwo:"/>
+
+        <TextView
+            android:id="@+id/binder_content_info_tv"
+            android:layout_column="1"
+            android:layout_row="7"
+            android:padding="7dp"
+            android:width="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill"
+            android:textSize="16sp"
+            android:text="nie dotyczy"/>
+
+        <TextView
+            android:id="@+id/other_info_tv"
+            android:layout_column="0"
+            android:layout_row="8"
+            android:layout_gravity="fill"
+            android:padding="7dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="10dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="Inne:"/>
+
+        <TextView
+            android:id="@+id/other_content_info_tv"
+            android:layout_column="1"
+            android:layout_row="8"
+            android:padding="7dp"
+            android:width="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill"
+            android:textSize="16sp"
+            android:enabled="false"
+            android:text="Fajnie wygląda. W dawnych czasasch robiono z nuch groty do strzał oraz siekierki - epoka kamienia łupanego."/>
+
+        <Button
+            android:id="@+id/add_commment_btn"
+            android:layout_column="0"
+            android:layout_row="9"
+            android:layout_columnSpan="2"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dodaj komnetarz" />
+
+
+        <ListView
+            android:id="@+id/list_lv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="10"
+            android:layout_columnSpan="2"
+            android:layout_marginTop="10dp"/>
+
+    </GridLayout>
+</ScrollView>
