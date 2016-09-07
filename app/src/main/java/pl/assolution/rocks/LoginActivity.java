@@ -29,6 +29,7 @@ public class LoginActivity extends Activity {
     private static String user_name = null;
     private EditText loginEditText;
     private EditText passwordEditText;
+    private Button passwordForgot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class LoginActivity extends Activity {
         Button createAccountButton = (Button) findViewById(R.id.create_account_btn);
         loginEditText = (EditText) findViewById(R.id.login_et);
         passwordEditText = (EditText) findViewById(R.id.password_et);
+        passwordForgot = (Button) findViewById(R.id.password_forgot_btn);
 
 
         createAccountButton.setOnClickListener(new View.OnClickListener() {
@@ -66,6 +68,14 @@ public class LoginActivity extends Activity {
                 if(!isError) {
                     login(login, password);
                 }
+            }
+        });
+
+        passwordForgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentPass = new Intent(getApplicationContext(), PasswordRecoveryActivity.class);
+                startActivity(intentPass);
             }
         });
     }

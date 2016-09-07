@@ -24,15 +24,14 @@
             android:name=".AllItemsActivity"
             android:label="@string/title_activity_all_items"
             android:screenOrientation="portrait">
-
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="pl.assolution.rocks.MainActivity" />
         </activity>
         <activity
             android:name=".AddItemActivity"
-            android:label="@string/title_activity_add_item"
             android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_add_item"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -87,6 +86,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="pl.assolution.rocks.AllItemsActivity" />
         </activity>
+        <activity android:name=".PasswordRecoveryActivity"></activity>
     </application>
 
 </manifest>

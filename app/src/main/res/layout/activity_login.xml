@@ -7,7 +7,7 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingTop="50dp"
     tools:context="pl.assolution.rocks.LoginActivity">
 
     <EditText
@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/activity_vertical_margin"
         android:textSize="30sp"
-        android:hint="Login"/>
+        android:hint="Nazwa użytkownika"/>
 
     <EditText
         android:id="@+id/password_et"
@@ -25,7 +25,7 @@
         android:layout_margin="@dimen/activity_vertical_margin"
         android:textSize="30sp"
         android:inputType="textPassword"
-        android:hint="Password"/>
+        android:hint="Hasło"/>
 
     <Button
         android:id="@+id/login_btn"
@@ -33,8 +33,7 @@
         android:layout_height="wrap_content"
         android:text="Zaloguj"
         android:layout_margin="@dimen/activity_horizontal_margin"
-        android:textSize="30sp"
-        />
+        android:textSize="30sp" />
 
     <Button
         android:id="@+id/create_account_btn"
@@ -42,7 +41,12 @@
         android:layout_height="wrap_content"
         android:text="Załóż konto"
         android:layout_margin="@dimen/activity_horizontal_margin"
-        android:textSize="30sp"
-        />
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/password_forgot_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="zapomniałęś hasła ?"/>
 
 </LinearLayout>
