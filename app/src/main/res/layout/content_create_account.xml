@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="pl.assolution.rocks.CreateAccountActivity"
     tools:showIn="@layout/activity_create_account">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp">
 
@@ -23,50 +23,92 @@
             android:text="ROCKS"
             android:textAlignment="center"
             android:textSize="40sp"/>
-        <EditText
-            android:layout_marginTop="20dp"
-            android:id="@+id/create_login_et"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/create_account_layout_login"
             android:layout_below="@+id/logo_text_tv"
-            android:hint="Nazwa użytkownika"/>
-        <EditText
-            android:layout_marginTop="10dp"
-            android:id="@+id/create_name_et"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/create_login_et"
-            android:hint="Imię"/>
-        <EditText
-            android:layout_marginTop="10dp"
-            android:id="@+id/create_surname_et"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_marginTop="20dp"
+                android:id="@+id/create_login_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nazwa użytkownika"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/create_account_layout_name"
+            android:layout_below="@+id/create_account_layout_login"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/create_name_et"
-            android:hint="Nazwisko"/>
-        <EditText
-            android:layout_marginTop="10dp"
-            android:id="@+id/create_email_et"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_marginTop="10dp"
+                android:id="@+id/create_name_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Imię"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/create_account_layout_surname"
+            android:layout_below="@+id/create_account_layout_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/create_surname_et"
-            android:hint="Adres Email"/>
-        <EditText
-            android:layout_marginTop="10dp"
-            android:id="@+id/create_password_et"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_marginTop="10dp"
+                android:id="@+id/create_surname_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nazwisko"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/create_account_layout_email"
+            android:layout_below="@+id/create_account_layout_surname"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/create_email_et"
-            android:hint="Hasło"
-            android:inputType="textPassword"/>
-        <EditText
-            android:layout_marginTop="10dp"
-            android:id="@+id/create_repate_password_et"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_marginTop="10dp"
+                android:id="@+id/create_email_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Adres Email"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/create_account_layout_password"
+            android:layout_below="@+id/create_account_layout_email"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/create_password_et"
-            android:hint="Powtórz hasło"
-            android:inputType="textPassword"/>
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_marginTop="10dp"
+                android:id="@+id/create_password_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Hasło"
+                android:inputType="textPassword"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/create_account_layout_re_password"
+            android:layout_below="@+id/create_account_layout_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_marginTop="10dp"
+                android:id="@+id/create_repate_password_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Powtórz hasło"
+                android:inputType="textPassword"/>
+        </android.support.design.widget.TextInputLayout>
 
         <Button
             android:padding="25dp"
@@ -75,13 +117,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Utwórz konto"
-            android:layout_below="@+id/create_repate_password_et"/>
-
-
+            android:layout_below="@+id/create_account_layout_re_password"/>
 
     </RelativeLayout>
-
-
-
-
 </ScrollView>

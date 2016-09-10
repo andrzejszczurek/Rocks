@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/login_linear_layout"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,27 +11,39 @@
     android:paddingTop="50dp"
     tools:context="pl.assolution.rocks.LoginActivity">
 
-    <EditText
-        android:id="@+id/login_et"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/activity_vertical_margin"
-        android:textSize="30sp"
-        android:hint="Nazwa użytkownika"/>
 
-    <EditText
-        android:id="@+id/password_et"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/activity_vertical_margin"
-        android:textSize="30sp"
-        android:inputType="textPassword"
-        android:hint="Hasło"/>
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/login_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_vertical_margin"
+            android:textSize="30sp"
+            android:hint="Nazwa użytkownika"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/password_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_vertical_margin"
+            android:textSize="30sp"
+            android:inputType="textPassword"
+            android:hint="Hasło"/>
+    </android.support.design.widget.TextInputLayout>
 
     <Button
         android:id="@+id/login_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_selector"
         android:text="Zaloguj"
         android:layout_margin="@dimen/activity_horizontal_margin"
         android:textSize="30sp" />
@@ -39,6 +52,7 @@
         android:id="@+id/create_account_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_selector"
         android:text="Załóż konto"
         android:layout_margin="@dimen/activity_horizontal_margin"
         android:textSize="30sp" />
@@ -47,6 +61,6 @@
         android:id="@+id/password_forgot_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_selector"
         android:text="zapomniałęś hasła ?"/>
-
 </LinearLayout>

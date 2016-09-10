@@ -1,19 +1,26 @@
 package pl.assolution.rocks;
 
 import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.Patterns;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -21,7 +28,9 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
-public class CreateAccountActivity extends AppCompatActivity {
+import static pl.assolution.rocks.InternetAccessChecker.checkInternetConnection;
+
+public class CreateAccountActivity extends AppCompatActivity implements InternetAccessChecker.InternetAccessListener {
 
     JSONParser jsonParser = new JSONParser();
     private ProgressDialog progressDialog;
@@ -29,13 +38,14 @@ public class CreateAccountActivity extends AppCompatActivity {
     private static final String TAG_SUCCESS = "success";
     private Integer errorNumber = null;
 
-    private Button createAccountButton;
+    protected Button createAccountButton;
     private EditText loginEditText;
     private EditText nameEditText;
     private EditText surnameEditText;
     private EditText emailEditText;
     private EditText passwordEditText;
     private EditText rePasswordEditText;
+    private CoordinatorLayout snackBarView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +54,8 @@ public class CreateAccountActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        snackBarView = (CoordinatorLayout) findViewById(R.id.coordinator_layout_create_account);
+
         loginEditText = (EditText) findViewById(R.id.create_login_et);
         nameEditText = (EditText) findViewById(R.id.create_name_et);
         surnameEditText = (EditText) findViewById(R.id.create_surname_et);
@@ -51,6 +63,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         passwordEditText = (EditText) findViewById(R.id.create_password_et);
         rePasswordEditText = (EditText) findViewById(R.id.create_repate_password_et);
         createAccountButton = (Button) findViewById(R.id.sign_up_btn);
+
         createAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,11 +73,27 @@ public class CreateAccountActivity extends AppCompatActivity {
                 String email = emailEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
                 String rePassword = rePasswordEditText.getText().toString();
-                validate(login, name, surname, email, password, rePassword);
+
+                if(checkInternetConnection(snackBarView, InternetAccessChecker.isConnected())){
+                    validate(login, name, surname, email, password, rePassword);
+                }
             }
         });
-
+        checkInternetConnection(snackBarView, InternetAccessChecker.isConnected());
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        RocksApplication.getInstance().setAccessListener(this);
+    }
+
+    @Override
+    public void onNetworkConnectionChanged(boolean isConnected) {
+        checkInternetConnection(snackBarView, isConnected);
+    }
+
+
     private void validate(String login, String name, String surname, String email, String password, String rePassword) {
         Boolean isError = false;
 
@@ -96,8 +125,6 @@ public class CreateAccountActivity extends AppCompatActivity {
             isError = true;
         }
         if(!(password.equals(rePassword))) {
-            Log.d("hasło:", password);
-            Log.d("hasło:", rePassword);
             passwordEditText.getText().clear();
             rePasswordEditText.getText().clear();
             rePasswordEditText.setError("Niezgodne hasła");
@@ -132,8 +159,6 @@ public class CreateAccountActivity extends AppCompatActivity {
                 params.put("password", password);
                 JSONObject json = jsonParser.makeHttpRequest(url_create_user_account,"POST",params);
 
-                Log.d("Success:", TAG_SUCCESS);
-
                 try {
                     int success = json.getInt(TAG_SUCCESS);
                     if (success == 1) {
@@ -155,14 +180,47 @@ public class CreateAccountActivity extends AppCompatActivity {
                 super.onPostExecute(result);
 
                 if(result) {
-                    Toast.makeText(getApplicationContext(), "Konto utworzone", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Konto utworzone", Toast.LENGTH_LONG).show();
                     progressDialog.dismiss();
                     finish();
                 } else {
                     if(errorNumber == -1) {
-                        Toast.makeText(getApplicationContext(),"Konto o Podanym loginie istnieje", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(),"Konto o podanej nazwie użytkownika już ", Toast.LENGTH_SHORT).show();
                         loginEditText.getText().clear();
                         passwordEditText.getText().clear();
+                        rePasswordEditText.getText().clear();
+
+                        String msg = "Nazwa użytkownika zajęta";
+                        final Snackbar snackbar = Snackbar.make(findViewById(R.id.create_login_et), msg ,Snackbar.LENGTH_INDEFINITE);
+                        View snackBarView = snackbar.getView();
+                        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) snackBarView.getLayoutParams();
+                        params.gravity = (Gravity.TOP);
+                        snackBarView.setLayoutParams(params);
+                        TextView textView = (TextView) snackBarView.findViewById(android.support.design.R.id.snackbar_text);
+                        textView.setTextColor(Color.RED);
+                        snackbar.setActionTextColor(Color.WHITE);
+                        snackBarView.setBackgroundColor(Color.GRAY);
+
+                        snackbar.setAction("X", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                            }
+                        });
+
+                        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN) {
+                            textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                        }
+
+                        textView.setGravity(Gravity.CENTER_HORIZONTAL);
+                        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+                        snackbar.show();
+
+
+
+
+
+
+
                     }
                     progressDialog.dismiss();
                 }

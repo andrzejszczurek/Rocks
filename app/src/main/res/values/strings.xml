@@ -9,4 +9,13 @@
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="title_activity_item_info">ItemInfoActivity</string>
     <string name="title_activity_view_add_item">ViewAddItemActivity</string>
+
+    <string-array name="search_array">
+        <item>test_1</item>
+        <item>test_2</item>
+        <item>test_3</item>
+        <item>test_4</item>
+    </string-array>
+
+
 </resources>

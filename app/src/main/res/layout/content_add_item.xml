@@ -246,6 +246,8 @@
             android:visibility="gone"/>
 
         <LinearLayout
+            android:id="@+id/add_item_layout_buttons"
+            android:visibility="visible"
             android:layout_column="0"
             android:layout_row="16"
             android:layout_columnSpan="2"

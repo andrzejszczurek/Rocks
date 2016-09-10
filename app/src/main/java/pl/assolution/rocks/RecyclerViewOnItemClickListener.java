@@ -37,7 +37,6 @@ public class RecyclerViewOnItemClickListener implements RecyclerView.OnItemTouch
                 super.onLongPress(e);
             }
         });
-
     }
     @Override
     public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {

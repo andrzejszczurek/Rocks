@@ -14,6 +14,7 @@ import android.os.Environment;
 import android.os.PersistableBundle;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -26,6 +27,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,8 +42,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
-public class AddItemActivity extends AppCompatActivity {
+import static pl.assolution.rocks.InternetAccessChecker.checkInternetConnection;
 
+public class AddItemActivity extends AppCompatActivity implements InternetAccessChecker.InternetAccessListener {
+
+    private static final String url_upload_server = "http://student.agh.edu.pl/~aszczure/testowyUpload.php";
+    private static final String url_upload_description = "http://student.agh.edu.pl/~aszczure/itemDescriptionUpload.php";
+    private static final String url_edit = "http://student.agh.edu.pl/~aszczure/editedItemUpload.php";
     private static final int REQUEST_IMAGE_CAPTURE = 200;
     private static final int REQUEST_IMAGE_PICK = 100;
     public static final String FILE_URI = "file_uri";
@@ -49,16 +56,16 @@ public class AddItemActivity extends AppCompatActivity {
     public static final String TYPE = "type";
     public static final String COMPOSITION = "composition";
     public static final String STRUCTURE = "structure";
+    public static final String ID= "id_rock";
     public static final String TEXTURE = "texture";
     public static final String BINDER = "binder";
     public static final String DESIGNATION = "designation";
-    public static final String OTHER = "other";
+    public static final String OTHER = "others";
     public static final String AUTHOR= "author";
     public static final String PATH= "path";
     private static final String USER = "user";
     private static final String TAG_SUCCESS = "success";
-    private static final String url_upload_server = "http://student.agh.edu.pl/~aszczure/testowyUpload.php";
-    private static final String url_upload_description = "http://student.agh.edu.pl/~aszczure/itemDescriptionUpload.php";
+
     public Button takePhotoBtn;
     private Uri uriFile;
     private ImageView image;
@@ -87,6 +94,10 @@ public class AddItemActivity extends AppCompatActivity {
     public Button searchGalleryBtn;
     private String timeStamp;
     private String imageSourceInfo;
+    private LinearLayout linearLayout;
+    private String id_rock;
+    private ProgressDialog progressDialog;
+    private CoordinatorLayout coordinatorLayoutItemAdd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,12 +113,6 @@ public class AddItemActivity extends AppCompatActivity {
         searchGalleryBtn = (Button) findViewById(R.id.gallery_btn);
         uploadBtn = (Button) findViewById(R.id.upload_btn);
 
-        if (uploadBtn != null) {
-            uploadBtn.setClickable(false);
-            uploadBtn.setEnabled(false);
-            uploadBtn.setText("Dodaj wpis (Wymagane zdjęcie)");
-        }
-
         image = (ImageView) findViewById(R.id.add_image_iv);
 
         colorAddEt = (EditText) findViewById(R.id.color_add_et);
@@ -118,44 +123,80 @@ public class AddItemActivity extends AppCompatActivity {
         binderAddEt = (EditText) findViewById(R.id.binder_add_et);
         designationAddEt = (EditText) findViewById(R.id.designation_add_et);
         otherAddEt = (EditText) findViewById(R.id.other_add_et);
+        linearLayout = (LinearLayout) findViewById(R.id.add_item_layout_buttons);
+        coordinatorLayoutItemAdd = (CoordinatorLayout) findViewById(R.id.coordinator_layout_add_item);
 
-        searchGalleryBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent searchIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(searchIntent, REQUEST_IMAGE_PICK);
-                timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-                imagePathString = "IMG_rock"+ timeStamp +".jpg";
-            }
-        });
+        Intent intent = getIntent();
+        String editor = intent.getStringExtra("editor");
+        id_rock = intent.getStringExtra(ID);
 
-        takePhotoBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intentImage = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        colorAddEt.setText(intent.getStringExtra(COLOR));
+        typeAddEt.setText(intent.getStringExtra(TYPE));
+        compositionAddEt.setText(intent.getStringExtra(COMPOSITION));
+        structureAddEt.setText(intent.getStringExtra(STRUCTURE));
+        textureAddEt.setText(intent.getStringExtra(TEXTURE));
+        binderAddEt.setText(intent.getStringExtra(BINDER));
+        designationAddEt.setText(intent.getStringExtra(DESIGNATION));
+        otherAddEt.setText(intent.getStringExtra(OTHER));
 
-                File imageFolder = new File(Environment.getExternalStorageDirectory(), "RockApp/Media/");
+        if(editor.equals("edit")) {
+            linearLayout.setVisibility(View.GONE);
+            uploadBtn.setText("Dodaj Edycję");
 
-                if (!imageFolder.exists()) {
-                    if (!imageFolder.mkdirs()) {
-                        Log.e("FileCreateLog :: ", "Problem creating Image folder");
-                    }
+            uploadBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    UploadEditedItem(id_rock);
                 }
-                imagePathString = "IMG_rock"+ timeStamp +".jpg";
-                File imagePath = new File(imageFolder, imagePathString);
-                 uriFile = Uri.fromFile(imagePath);
-                Log.d("uri::", uriFile.toString());
+            });
 
-                intentImage.putExtra(MediaStore.EXTRA_OUTPUT, uriFile);
-                startActivityForResult(intentImage, REQUEST_IMAGE_CAPTURE);
+        } else {
+
+            if (uploadBtn != null) {
+                uploadBtn.setClickable(false);
+                uploadBtn.setEnabled(false);
+                uploadBtn.setText("Dodaj wpis (Wymagane zdjęcie)");
             }
-        });
 
-        if(!isSupportCamera()) {
-            Toast.makeText(getApplicationContext(),"Uppss. Brak kamery",Toast.LENGTH_LONG).show();
-            finish();
+            searchGalleryBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent searchIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(searchIntent, REQUEST_IMAGE_PICK);
+                    timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+                    imagePathString = "IMG_rock" + timeStamp + ".jpg";
+                }
+            });
+
+            takePhotoBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intentImage = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+
+                    File imageFolder = new File(Environment.getExternalStorageDirectory(), "RockApp/Media/");
+
+                    if (!imageFolder.exists()) {
+                        if (!imageFolder.mkdirs()) {
+                            Log.e("FileCreateLog :: ", "Problem creating Image folder");
+                        }
+                    }
+                    imagePathString = "IMG_rock" + timeStamp + ".jpg";
+                    File imagePath = new File(imageFolder, imagePathString);
+                    uriFile = Uri.fromFile(imagePath);
+                    Log.d("uri::", uriFile.toString());
+
+                    intentImage.putExtra(MediaStore.EXTRA_OUTPUT, uriFile);
+                    startActivityForResult(intentImage, REQUEST_IMAGE_CAPTURE);
+                }
+            });
+
+            if (!isSupportCamera()) {
+                Toast.makeText(getApplicationContext(), "Uppss. Brak kamery", Toast.LENGTH_LONG).show();
+                finish();
+            }
         }
+        checkInternetConnection(coordinatorLayoutItemAdd, InternetAccessChecker.isConnected());
     }
 
     @Override
@@ -180,7 +221,9 @@ public class AddItemActivity extends AppCompatActivity {
                 uploadBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Validation(uriFile.getPath());
+                        if(checkInternetConnection(coordinatorLayoutItemAdd, InternetAccessChecker.isConnected())) {
+                            Validation(uriFile.getPath());
+                        }
                     }
                 });
             } else if (resultCode == RESULT_CANCELED) {
@@ -216,7 +259,9 @@ public class AddItemActivity extends AppCompatActivity {
                 uploadBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Validation(imgDecodString);
+                        if(checkInternetConnection(coordinatorLayoutItemAdd, InternetAccessChecker.isConnected())) {
+                            Validation(imgDecodString);
+                        }
                     }
                 });
             } else if (resultCode == RESULT_CANCELED) {
@@ -225,6 +270,18 @@ public class AddItemActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Błąd, nie przechwycono zdjęcia", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        RocksApplication.getInstance().setAccessListener(this);
+    }
+
+
+    @Override
+    public void onNetworkConnectionChanged(boolean isConnected) {
+        checkInternetConnection(coordinatorLayoutItemAdd, isConnected);
     }
 
     private void Validation(String imgDecodString) {
@@ -353,7 +410,7 @@ public class AddItemActivity extends AppCompatActivity {
     }
 
     private void uploadItemToServer(String path, final String user, String imageSourceInfo) {
-        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog = new ProgressDialog(this);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setMessage("Running backup. Do not unplug drive");
         progressDialog.setIndeterminate(true);
@@ -487,9 +544,74 @@ public class AddItemActivity extends AppCompatActivity {
         return isError;
     }
 
+    private void UploadEditedItem(final String id) {
+
+        textColorAddEt = colorAddEt.getText().toString();
+        textTypeAddEt = typeAddEt.getText().toString();
+        textCompositionAddEt = compositionAddEt.getText().toString();
+        textStructureAddEt = structureAddEt.getText().toString();
+        textTextureAddEt = textureAddEt.getText().toString();
+        textBinderAddEt = binderAddEt.getText().toString();
+        textDesignationAddEt = designationAddEt.getText().toString();
+        textOtherAddEt = otherAddEt.getText().toString();
+
+        AsyncTask<String, String, String> task = new AsyncTask<String, String, String>() {
+
+            @Override
+            protected String doInBackground(String... strings) {
+
+                HashMap<String, String> params = new HashMap<>();
+                params.put(COLOR, textColorAddEt);
+                params.put(TYPE, textTypeAddEt);
+                params.put(COMPOSITION, textCompositionAddEt);
+                params.put(STRUCTURE, textStructureAddEt);
+                params.put(TEXTURE, textTextureAddEt);
+                params.put(BINDER, textBinderAddEt);
+                params.put(DESIGNATION, textDesignationAddEt);
+                params.put(OTHER, textOtherAddEt);
+                params.put(ID, strings[0]);
+
+                JSONObject json = jsonParser.makeHttpRequest(url_edit,"POST", params);
+
+                try {
+                    int success = json.getInt(TAG_SUCCESS);
+
+                    if(success == 1) {
+                        Intent intent = getIntent();
+                        setResult(666, intent);
+                        finish();
+                    }
+
+                }catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                progressDialog.dismiss();
+                Toast.makeText(getApplicationContext(),"Edytowano wpis", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                progressDialog = new ProgressDialog(AddItemActivity.this);
+                progressDialog.setMessage("Usuwanie. Proszę czekać...");
+                progressDialog.setIndeterminate(false);
+                progressDialog.setCancelable(false);
+                progressDialog.show();
+            }
+        };
+        task.execute(id);
+    }
+
+
     private File scaleImage(File file, String source) {
         try {
-
             BitmapFactory.Options o = new BitmapFactory.Options();
             o.inJustDecodeBounds = true;
             o.inSampleSize = 6;

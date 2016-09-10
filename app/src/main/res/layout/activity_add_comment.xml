@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relative_add_comment_layout"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="pl.assolution.rocks.AddCommentActivity">
+
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_alignParentTop="true"
+        android:id="@+id/input_1"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/comment_author_et"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:focusable="false"
+            android:enabled="false"
+            android:hint="Autor:"
+            android:text="Andrzej"
+            android:inputType="none"/>
+    </android.support.design.widget.TextInputLayout>
+
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_below="@+id/input_1"
+        android:id="@+id/input_2"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:textSize="20sp"
+            android:id="@+id/comment_content_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Treść (max 150 znaków)"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:textSize="18sp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/input_1"
+        android:layout_toEndOf="@id/input_1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="0dp"
+        android:layout_alignTop="@+id/input_1"
+        android:id="@+id/add_comment_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:text="Dodaj komentarz"/>
+
+
+
+</RelativeLayout>
