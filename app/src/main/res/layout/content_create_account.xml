@@ -20,9 +20,10 @@
             android:layout_alignParentTop="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ROCKS"
+            android:text="@string/rocks"
             android:textAlignment="center"
-            android:textSize="40sp"/>
+            android:textSize="40sp"
+            tools:targetApi="jelly_bean_mr1" />
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/create_account_layout_login"
@@ -35,7 +36,7 @@
                 android:id="@+id/create_login_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nazwa użytkownika"/>
+                android:hint="@string/nazwa_u_ytkownika"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -49,7 +50,7 @@
                 android:id="@+id/create_name_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Imię"/>
+                android:hint="@string/imi"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -63,7 +64,7 @@
                 android:id="@+id/create_surname_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nazwisko"/>
+                android:hint="@string/nazwisko"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -75,9 +76,10 @@
             <EditText
                 android:layout_marginTop="10dp"
                 android:id="@+id/create_email_et"
+                android:inputType="textEmailAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Adres Email"/>
+                android:hint="@string/adres_email"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -91,7 +93,7 @@
                 android:id="@+id/create_password_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Hasło"
+                android:hint="@string/has_o"
                 android:inputType="textPassword"/>
         </android.support.design.widget.TextInputLayout>
 
@@ -106,17 +108,22 @@
                 android:id="@+id/create_repate_password_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Powtórz hasło"
+                android:hint="@string/powt_rz_has_o"
                 android:inputType="textPassword"/>
         </android.support.design.widget.TextInputLayout>
 
         <Button
-            android:padding="25dp"
-            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:textStyle="italic"
+            android:padding="5dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="20dp"
             android:id="@+id/sign_up_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Utwórz konto"
+            android:text="@string/utw_rz_konto"
+            android:background="@drawable/button_selector"
             android:layout_below="@+id/create_account_layout_re_password"/>
 
     </RelativeLayout>

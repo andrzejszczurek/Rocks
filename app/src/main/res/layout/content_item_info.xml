@@ -20,6 +20,7 @@
         android:columnCount="2">
 
         <ImageView
+            android:contentDescription="@string/content_description_rock_image_view"
             android:id="@+id/rock_image_info"
             android:layout_row="0"
             android:layout_column="0"
@@ -37,9 +38,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="10dp"
+            android:paddingLeft="10dp"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:text="Rozpoznanie:"/>
+            android:text="@string/rozpoznanie"/>
 
         <TextView
             android:id="@+id/designation_content_info__tv"
@@ -51,8 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="fill"
             android:textSize="16sp"
-            android:width="0dp"
-            android:text="Krzemień"/>
+            android:width="0dp" />
 
         <TextView
             android:id="@+id/type_info_tv"
@@ -63,9 +64,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="10dp"
+            android:paddingLeft="10dp"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:text="Typ:"/>
+            android:text="@string/typ"/>
 
         <TextView
             android:id="@+id/type_content_info_tv"
@@ -76,8 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="fill"
             android:textSize="16sp"
-            android:width="0dp"
-            android:text="Osadowa"/>
+            android:width="0dp"/>
 
         <TextView
             android:id="@+id/color_info_tv"
@@ -88,9 +89,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="10dp"
+            android:paddingLeft="10dp"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:text="Kolor:"/>
+            android:text="@string/kolor"/>
 
         <TextView
             android:id="@+id/color_content_info_tv"
@@ -101,8 +103,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="fill"
-            android:textSize="16sp"
-            android:text="brązowy, pomarańczowy, żółty, brunatny"/>
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/structure_info_tv"
@@ -113,9 +114,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="10dp"
+            android:paddingLeft="10dp"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:text="Struktura:"/>
+            android:text="@string/struktura"/>
 
         <TextView
             android:id="@+id/structure_content_info_tv"
@@ -126,8 +128,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="fill"
-            android:textSize="16sp"
-            android:text="zbita, bezładna"/>
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/texture_info_tv"
@@ -138,9 +139,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="10dp"
+            android:paddingLeft="10dp"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:text="Tekstura:"/>
+            android:text="@string/tekstura"/>
 
         <TextView
             android:id="@+id/texture_content_info_tv"
@@ -151,8 +153,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="fill"
-            android:textSize="16sp"
-            android:text="krzemieniowata"/>
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/composition_info_tv"
@@ -163,9 +164,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="10dp"
+            android:paddingLeft="10dp"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:text="Skład:"/>
+            android:text="@string/sk_ad"/>
 
         <TextView
             android:id="@+id/composition_content_info_tv"
@@ -176,8 +178,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="fill"
-            android:textSize="16sp"
-            android:text="skalenie, amfibole, muskowit, granaty, kwarc, krzemionka"/>
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/binder_info_tv"
@@ -188,9 +189,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="10dp"
+            android:paddingLeft="10dp"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:text="Spoiwo:"/>
+            android:text="@string/spoiwo"/>
 
         <TextView
             android:id="@+id/binder_content_info_tv"
@@ -201,8 +203,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="fill"
-            android:textSize="16sp"
-            android:text="nie dotyczy"/>
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/other_info_tv"
@@ -213,9 +214,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="10dp"
+            android:paddingLeft="10dp"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:text="Inne:"/>
+            android:text="@string/inne"/>
 
         <TextView
             android:id="@+id/other_content_info_tv"
@@ -226,10 +228,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="fill"
-            android:textSize="16sp"
-            android:text="Fajnie wygląda. W dawnych czasasch robiono z nuch groty do strzał oraz siekierki - epoka kamienia łupanego."/>
+            android:textSize="16sp"/>
 
         <Button
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/button_selector"
             android:id="@+id/add_commment_btn"
             android:layout_column="0"
             android:layout_row="9"
@@ -238,7 +242,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="visible"
-            android:text="Dodaj komnetarz" />
+            android:textSize="16sp"
+            android:text="@string/dodaj_komnetarz" />
 
         <LinearLayout
             android:id="@+id/my_options_layout"
@@ -251,20 +256,26 @@
             android:layout_height="match_parent">
 
             <Button
+                android:textSize="16sp"
+                android:layout_margin="5dp"
+                android:background="@drawable/button_selector"
                 android:id="@+id/edit__btn"
                 android:visibility="visible"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Edytuj" />
+                android:text="@string/edytuj" />
 
             <Button
+                android:textSize="16sp"
+                android:layout_margin="5dp"
+                android:background="@drawable/button_selector"
                 android:id="@+id/delete_btn"
                 android:visibility="visible"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Usuń wpis" />
+                android:text="@string/usu_wpis" />
         </LinearLayout>
 
         <TextView
@@ -279,7 +290,7 @@
             android:layout_marginTop="5dp"
             android:textSize="26sp"
             android:textStyle="italic"
-            android:text="Komentarze:"/>
+            android:text="@string/komentarze"/>
         <ListView
             android:layout_columnSpan="2"
             android:layout_column="0"

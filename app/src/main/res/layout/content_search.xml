@@ -14,7 +14,9 @@
 
     <android.support.design.widget.TextInputLayout
         android:layout_toLeftOf="@+id/search_ibtn"
+        android:layout_toStartOf="@+id/search_ibtn"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:id="@+id/search_et_input"
         android:layout_alignParentTop="true"
         android:layout_width="match_parent"
@@ -25,12 +27,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:hint="Fraza"/>
+            android:hint="@string/fraza"/>
     </android.support.design.widget.TextInputLayout>
 
     <ImageButton
+        android:contentDescription="@string/lupa_do_wyszukiwania"
         android:id="@+id/search_ibtn"
         android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

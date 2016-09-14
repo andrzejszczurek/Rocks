@@ -15,7 +15,7 @@
 
     <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:columnCount="2"
         android:rowCount="20">
 
@@ -31,7 +31,7 @@
             android:textStyle="bold"
             android:textSize="20sp"
             android:layout_marginTop="8dp"
-            android:text="BARWA" />
+            android:text="@string/color_tv" />
 
         <EditText
             android:id="@+id/color_add_et"
@@ -44,7 +44,7 @@
             android:layout_columnSpan="2"
             android:textSize="14sp"
             android:layout_marginTop="-7dp"
-            android:hint="np. b1>b2>b3 - żółta, brunatna, czerwona" />
+            android:hint="@string/np_b1_b2_b3_ta_brunatna_czerwona" />
 
         <TextView
             android:id="@+id/type_add_tv"
@@ -58,7 +58,7 @@
             android:textStyle="bold"
             android:textSize="20sp"
             android:layout_marginTop="8dp"
-            android:text="TYP" />
+            android:text="@string/type" />
 
         <EditText
             android:id="@+id/type_add_et"
@@ -71,7 +71,7 @@
             android:layout_columnSpan="2"
             android:textSize="14sp"
             android:layout_marginTop="-7dp"
-            android:hint="np. magmowa, osadowa, metamorficzna" />
+            android:hint="@string/np_magmowa_osadowa_metamorficzna" />
 
         <TextView
             android:id="@+id/composition_add_tv"
@@ -85,7 +85,7 @@
             android:textStyle="bold"
             android:textSize="20sp"
             android:layout_marginTop="8dp"
-            android:text="SKŁAD MINERALNY" />
+            android:text="@string/composition" />
 
         <EditText
             android:id="@+id/composition_add_et"
@@ -98,7 +98,7 @@
             android:layout_columnSpan="2"
             android:textSize="14sp"
             android:layout_marginTop="-7dp"
-            android:hint="np. muskowit, amfobole, biotyt, kwarc" />
+            android:hint="@string/np_muskowit_amfobole_biotyt_kwarc" />
 
         <TextView
             android:id="@+id/structure_add_tv"
@@ -112,7 +112,7 @@
             android:textStyle="bold"
             android:textSize="20sp"
             android:layout_marginTop="8dp"
-            android:text="STRUKTURA" />
+            android:text="@string/structura" />
 
         <EditText
             android:id="@+id/structure_add_et"
@@ -125,7 +125,7 @@
             android:layout_columnSpan="2"
             android:textSize="14sp"
             android:layout_marginTop="-7dp"
-            android:hint="np. zbita, masywna" />
+            android:hint="@string/np_zbita_masywna" />
 
         <TextView
             android:id="@+id/texture_add_tv"
@@ -139,7 +139,7 @@
             android:textStyle="bold"
             android:textSize="20sp"
             android:layout_marginTop="8dp"
-            android:text="TEKSTURA" />
+            android:text="@string/tekstrura" />
 
         <EditText
             android:id="@+id/texture_add_et"
@@ -152,7 +152,7 @@
             android:layout_columnSpan="2"
             android:textSize="14sp"
             android:layout_marginTop="-7dp"
-            android:hint="np.bezładna, uporzątkowana" />
+            android:hint="@string/np_bez_adna_uporz_tkowana" />
 
         <TextView
             android:id="@+id/binder_add_tv"
@@ -166,7 +166,7 @@
             android:textStyle="bold"
             android:textSize="20sp"
             android:layout_marginTop="8dp"
-            android:text="SPOIWO" />
+            android:text="@string/binder" />
 
         <EditText
             android:id="@+id/binder_add_et"
@@ -179,7 +179,7 @@
             android:layout_columnSpan="2"
             android:textSize="14sp"
             android:layout_marginTop="-7dp"
-            android:hint="np. typ: cement/matrix - krzemiokowe, wapienne" />
+            android:hint="@string/np_typ_cement_matrix_krzemiokowe_wapienne" />
 
         <TextView
             android:id="@+id/designation_add_tv"
@@ -193,7 +193,7 @@
             android:textStyle="bold"
             android:textSize="20sp"
             android:layout_marginTop="8dp"
-            android:text="ROZPOZNANIE" />
+            android:text="@string/designation" />
 
         <EditText
             android:id="@+id/designation_add_et"
@@ -206,7 +206,7 @@
             android:layout_columnSpan="2"
             android:textSize="14sp"
             android:layout_marginTop="-7dp"
-            android:hint="np. wapień, marmur, bazalt, krzemień" />
+            android:hint="@string/np_wapie_marmur_bazalt_krzemie" />
 
         <TextView
             android:id="@+id/other_add_tv"
@@ -220,7 +220,7 @@
             android:textStyle="bold"
             android:textSize="20sp"
             android:layout_marginTop="8dp"
-            android:text="INNE" />
+            android:text="@string/others" />
 
         <EditText
             android:id="@+id/other_add_et"
@@ -233,9 +233,10 @@
             android:layout_columnSpan="2"
             android:textSize="14sp"
             android:layout_marginTop="-7dp"
-            android:hint="np. skała w części zmetamorfizowana" />
+            android:hint="@string/np_ska_a_w_cz_ci_zmetamorfizowana" />
 
         <ImageView
+            android:contentDescription="@string/content_description_rock_image_view"
             android:id="@+id/add_image_iv"
             android:layout_column="0"
             android:layout_row="17"
@@ -246,6 +247,7 @@
             android:visibility="gone"/>
 
         <LinearLayout
+            android:layout_marginTop="10dp"
             android:id="@+id/add_item_layout_buttons"
             android:visibility="visible"
             android:layout_column="0"
@@ -256,23 +258,28 @@
             android:orientation="horizontal">
 
             <Button
+                android:layout_marginRight="5dp"
                 android:id="@+id/take_photo_btn"
                 android:layout_gravity="fill"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Aparat"/>
+                android:background="@drawable/button_selector"
+                android:text="@string/aparat"/>
 
             <Button
+                android:layout_marginLeft="5dp"
                 android:id="@+id/gallery_btn"
                 android:layout_gravity="fill"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Galeria"/>
+                android:background="@drawable/button_selector"
+                android:text="@string/galeria"/>
         </LinearLayout>
 
         <Button
+            android:layout_marginTop="15dp"
             android:id="@+id/upload_btn"
             android:layout_gravity="fill"
             android:layout_width="match_parent"
@@ -280,7 +287,7 @@
             android:layout_column="0"
             android:layout_row="18"
             android:layout_columnSpan="2"
-            android:text="Dodaj skałę"/>
-
+            android:background="@drawable/button_selector"
+            android:text="@string/dodaj_ska"/>
     </GridLayout>
 </ScrollView>

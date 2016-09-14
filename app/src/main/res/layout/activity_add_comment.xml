@@ -9,6 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/background_selector"
     tools:context="pl.assolution.rocks.AddCommentActivity">
 
 
@@ -27,8 +28,7 @@
             android:textSize="30sp"
             android:focusable="false"
             android:enabled="false"
-            android:hint="Autor:"
-            android:text="Andrzej"
+            android:hint="@string/author"
             android:inputType="none"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -46,7 +46,7 @@
             android:id="@+id/comment_content_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Treść (max 150 znaków)"/>
+            android:hint="@string/comment_content"/>
     </android.support.design.widget.TextInputLayout>
 
     <Button
@@ -62,7 +62,8 @@
         android:id="@+id/add_comment_btn"
         android:layout_width="wrap_content"
         android:layout_height="70dp"
-        android:text="Dodaj komentarz"/>
+        android:background="@drawable/button_selector"
+        android:text="@string/add_comment_btn"/>
 
 
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/background_selector"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -11,8 +12,7 @@
         android:layout_alignParentStart="true"
         android:id="@+id/comment_author_tv"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Andrzej"/>
+        android:layout_height="wrap_content" />
 
     <TextView
         android:textSize="16sp"
@@ -32,7 +32,6 @@
         android:layout_below="@+id/comment_author_tv"
         android:id="@+id/comment_content_tv"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ale jesteś brzydka"/>
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>

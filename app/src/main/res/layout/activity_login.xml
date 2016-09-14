@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/background_selector"
     android:id="@+id/login_linear_layout"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,56 +12,79 @@
     android:paddingTop="50dp"
     tools:context="pl.assolution.rocks.LoginActivity">
 
-
     <android.support.design.widget.TextInputLayout
+        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:focusable="true"
             android:id="@+id/login_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_vertical_margin"
             android:textSize="30sp"
-            android:hint="Nazwa użytkownika"/>
+            android:textStyle="italic"
+            android:hint="@string/user_login_et"/>
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:focusable="true"
             android:id="@+id/password_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_vertical_margin"
             android:textSize="30sp"
+            android:textStyle="italic"
             android:inputType="textPassword"
-            android:hint="Hasło"/>
+            android:hint="@string/password_et"/>
     </android.support.design.widget.TextInputLayout>
 
     <Button
+        android:textStyle="italic"
+        android:textColor="#8F8F8F"
         android:id="@+id/login_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/button_selector"
-        android:text="Zaloguj"
-        android:layout_margin="@dimen/activity_horizontal_margin"
-        android:textSize="30sp" />
+        android:text="@string/login_btn"
+        android:layout_marginRight="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="40dp"
+        android:textSize="25sp" />
 
     <Button
+        android:textColor="#8F8F8F"
         android:id="@+id/create_account_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/button_selector"
-        android:text="Załóż konto"
-        android:layout_margin="@dimen/activity_horizontal_margin"
-        android:textSize="30sp" />
+        android:text="@string/create_account_btn"
+        android:layout_marginRight="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="40dp"
+        android:textStyle="italic|bold"
+        android:textSize="25sp" />
 
     <Button
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:textColor="#8F8F8F"
+        android:textStyle="italic"
         android:id="@+id/password_forgot_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/button_selector"
-        android:text="zapomniałęś hasła ?"/>
+        android:layout_marginRight="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="40dp"
+        android:textSize="25sp"
+        android:text="@string/password_forgot_btn"/>
 </LinearLayout>
