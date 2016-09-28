@@ -2,12 +2,13 @@ package pl.assolution.rocks;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -19,134 +20,116 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.InputStream;
 import java.util.HashMap;
 
 import static pl.assolution.rocks.InternetAccessChecker.checkInternetConnection;
 
-public class AllItemsActivity extends AppCompatActivity implements InternetAccessChecker.InternetAccessListener{
+public class SearchItemsActivity extends AppCompatActivity implements InternetAccessChecker.InternetAccessListener{
+
+    private static final String TAG_DESIGNATION= "designation";
+    private static final String TAG_TYPE= "type";
+    private static final String TAG_AUTHOR= "author";
+    private static final String TAG_SUCCESS = "success";
+    private static final String TAG_ITEMS = "item";
+    private static final String TAG_ID_ROCK= "id_rock";
+    private static final String TAG_DESCRIPTION= "type";
+    private static final String TAG_URL_IMAGE= "image";
 
     private RecyclerView recyclerView;
     private SimplyItem.ItemsList list = new SimplyItem.ItemsList();
     private Bitmap imageBitmap = null;
     private ItemsAdapter itemsAdapter;
-    private static final String TAG_SUCCESS = "success";
-    private static final String TAG_ITEMS = "item";
-    private static final String TAG_ID_ROCK= "id_rock";
-    private static final String TAG_DESIGNATION= "designation";
-    private static final String TAG_DESCRIPTION= "type";
-//    private static final String TAG_AUTHOR= "author";
-    private static final String TAG_URL_IMAGE= "image";
-    private static final String TAG_QUERY_TYPE= "type";
-    private static final String USER = "user";
-    private static String url_all_items_reading = "http://student.agh.edu.pl/~aszczure/allItemsReading.php";
+
+    private CoordinatorLayout coordinatorLayoutItemSearchItems;
+    private RocksApplication.LoginManager loginManager;
+
+    private static String url_search_items_reading = "http://student.agh.edu.pl/~aszczure/searchItemsReading.php";
     private ProgressDialog progressDialog;
     JSONArray items = null;
     JSONParser jsonParser = new JSONParser();
-    private String source;
-    private CoordinatorLayout coordinatorLayoutAllItem;
+    private String tag;
+    private String query;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_all_items);
+        setContentView(R.layout.activity_search_items);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar =  getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        source = getIntent().getStringExtra("query");
-
-        coordinatorLayoutAllItem = (CoordinatorLayout) findViewById(R.id.coordinator_layout_all_item);
+        coordinatorLayoutItemSearchItems = (CoordinatorLayout) findViewById(R.id.corlay);
+        Intent intent = getIntent();
+        query = intent.getStringExtra("query");
+        tag = intent.getStringExtra("tag");
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.addOnItemTouchListener(new RecyclerViewOnItemClickListener(getApplicationContext(), recyclerView, new RecyclerViewOnItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                if(checkInternetConnection(coordinatorLayoutAllItem, InternetAccessChecker.isConnected())) {
+                if(checkInternetConnection(coordinatorLayoutItemSearchItems, InternetAccessChecker.isConnected())) {
                     TextView tv = (TextView) view.findViewById(R.id.id_rock_tv);
                     String id = tv.getText().toString();
                     Intent intent = new Intent(getApplicationContext(), ItemInfoActivity.class);
                     intent.putExtra(TAG_ID_ROCK, id);
-                    intent.putExtra("source", source);
                     startActivityForResult(intent, 100);
                 }
             }
 
             @Override
             public void onItemLongClick(View view, int position) {
-                if(checkInternetConnection(coordinatorLayoutAllItem, InternetAccessChecker.isConnected()));
+                if(checkInternetConnection(coordinatorLayoutItemSearchItems, InternetAccessChecker.isConnected()));
             }
         }));
 
-        if(checkInternetConnection(coordinatorLayoutAllItem, InternetAccessChecker.isConnected())) {
-            LoadAllItems();
+        if(checkInternetConnection(coordinatorLayoutItemSearchItems, InternetAccessChecker.isConnected())) {
+            SearchDisplay(query, tag);
         }
+
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        RocksApplication.getInstance().setAccessListener(this);
-    }
 
-    @Override
-    public void onNetworkConnectionChanged(boolean isConnected) {
-        checkInternetConnection(coordinatorLayoutAllItem, isConnected);
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Intent intent = getIntent();
-        finish();
-
-        startActivity(intent);
-    }
-
-    private void LoadAllItems() {
+    private void SearchDisplay(String query, String tag) {
         AsyncTask<String, Integer, Boolean> task = new AsyncTask<String, Integer, Boolean>() {
             @Override
             protected Boolean doInBackground(String... strings) {
-
-                Intent intent = getIntent();
-                String queryType = intent.getStringExtra("query");
+                String query = strings[0];
+                String tag = strings[1];
 
                 HashMap<String, String> params = new HashMap<>();
-                params.put(TAG_QUERY_TYPE, queryType );
+                params.put("query", query);
+                params.put("tag", tag);
 
-                if(queryType.equals("my")) {
-                    SharedPreferences sharedPreferences = getSharedPreferences(USER, MODE_PRIVATE);
-                    String userAdd = sharedPreferences.getString(USER, null);
-                    params.put("author", userAdd);
-                }
+                JSONObject json = jsonParser.makeHttpRequest(url_search_items_reading,"GET",params);
 
-                JSONObject json = jsonParser.makeHttpRequest(url_all_items_reading,"GET",params);
-
-                Log.d("Wszystkie skaly: ", json.toString());                                                    //Log testowy
+                Log.d("Wszystkie skaly: ", json.toString());
 
                 try {
                     int success = json.getInt(TAG_SUCCESS);
                     if (success == 1) {
                         items = json.getJSONArray(TAG_ITEMS);
-                        SharedPreferences sharedPreferences = getSharedPreferences(USER, MODE_PRIVATE);
-                        String userAdd = sharedPreferences.getString(USER, null);
-
                         for (int i = 0; i < items.length(); i++) {
                             JSONObject c = items.getJSONObject(i);
 
                             String id_rock = c.getString(TAG_ID_ROCK);
                             String designation = c.getString(TAG_DESIGNATION);
                             String description = c.getString(TAG_DESCRIPTION);
-                            String author = userAdd;//c.getString(TAG_AUTHOR);
                             String url = c.getString(TAG_URL_IMAGE);
+                            String author = c.getString(TAG_AUTHOR);
                             String imgUrl = "http://student.agh.edu.pl/~aszczure/"+url;
 
                             try {
@@ -186,14 +169,19 @@ public class AllItemsActivity extends AppCompatActivity implements InternetAcces
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                progressDialog = new ProgressDialog(AllItemsActivity.this);
-                progressDialog.setMessage("Pobieranie wpisów...");
+                progressDialog = new ProgressDialog(SearchItemsActivity.this);
+                progressDialog.setMessage("Przeszukiwanie bazy...");
                 progressDialog.setIndeterminate(false);
                 progressDialog.setCancelable(false);
                 progressDialog.show();
-        }
+            }
         };
-        task.execute();
+        task.execute(query, tag);
+    }
+
+    @Override
+    public void onNetworkConnectionChanged(boolean isConnected) {
+        checkInternetConnection(coordinatorLayoutItemSearchItems, isConnected);
     }
 
     @Override
@@ -232,7 +220,5 @@ public class AllItemsActivity extends AppCompatActivity implements InternetAcces
         }
         return super.onOptionsItemSelected(item);
     }
+
 }
-
-
-

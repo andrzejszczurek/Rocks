@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/background_selector"
@@ -11,6 +11,98 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="pl.assolution.rocks.AboutActivity"
+    android:orientation="vertical"
     tools:showIn="@layout/activity_about">
 
-</RelativeLayout>
+    <TextView
+        android:textStyle="italic|bold"
+        android:textSize="25sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Witaj w aplikacji Rocks!"/>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:textSize="15sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rocks to prosta aplikacja przeznaczona do rejestracji oraz przeglądania okazów skalnych okazów skalnych."/>
+
+    <TextView
+        android:textSize="15sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aby rozpocząć korzystanie z aplikacji należy posiadać założone konto."/>
+
+    <TextView
+        android:textSize="15sp"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="W menu głównym znajdują się cztery opcję: "/>
+
+    <TextView
+        android:textSize="15sp"
+        android:layout_marginTop="7dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pokaż najnowsze - o kliknięciu nastąpi pobranie kilkudziesięciu najnowszych wpisów dodanych przez użytkowników."/>
+
+    <TextView
+        android:textSize="15sp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="7dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pokaż moje - pozwala przeglądać dodane przez siebie wpisy."/>
+
+    <TextView
+        android:textSize="15sp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="7dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dodaj wpis - przenosi do formularza rozpoznawania skały."/>
+
+
+    <TextView
+        android:textSize="15sp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aplikacja umożliwia również komentowanie istniejących wpisów."/>
+
+    <TextView
+        android:textSize="15sp"
+        android:layout_marginTop="7dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aplikacja umożliwia również komentowanie istniejących wpisów."/>
+
+    <TextView
+        android:textStyle="italic"
+        android:textSize="15sp"
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Autor: Andrzej Szczurek"/>
+
+    <TextView
+        android:textStyle="italic"
+        android:textSize="15sp"
+        android:layout_marginTop="7dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Wykonano w ramach pracy magisterskiej: Projekt mobilnego systemu rejestracji danych związanych ze środowiskiem naturalnym."/>
+
+    <TextView
+        android:gravity="bottom"
+        android:layout_gravity="end"
+        android:textSize="12sp"
+        android:layout_marginTop="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Wersja 1.0"/>
+
+</LinearLayout>

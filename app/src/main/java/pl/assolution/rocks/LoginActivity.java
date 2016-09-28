@@ -146,7 +146,7 @@ public class LoginActivity extends Activity implements InternetAccessChecker.Int
             protected void onPreExecute() {
                 super.onPreExecute();
                 progressDialog = new ProgressDialog(LoginActivity.this);
-                progressDialog.setMessage("Loading products. Please wait...");
+                progressDialog.setMessage("Logowanie...");
                 progressDialog.setIndeterminate(false);
                 progressDialog.setCancelable(false);
                 progressDialog.show();

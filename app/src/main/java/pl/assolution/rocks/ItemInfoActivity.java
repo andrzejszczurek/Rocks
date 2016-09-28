@@ -296,7 +296,7 @@ public class ItemInfoActivity extends AppCompatActivity implements InternetAcces
             protected void onPreExecute() {
                 super.onPreExecute();
                 progressDialog = new ProgressDialog(ItemInfoActivity.this);
-                progressDialog.setMessage("Loading. Please wait...");
+                progressDialog.setMessage("Pobieranie danych...");
                 progressDialog.setIndeterminate(false);
                 progressDialog.setCancelable(false);
                 progressDialog.show();
@@ -356,7 +356,7 @@ public class ItemInfoActivity extends AppCompatActivity implements InternetAcces
             protected void onPreExecute() {
                 super.onPreExecute();
                 progressDialog = new ProgressDialog(ItemInfoActivity.this);
-                progressDialog.setMessage("Usuwanie. Proszę czekać...");
+                progressDialog.setMessage("Usuwanie...");
                 progressDialog.setIndeterminate(false);
                 progressDialog.setCancelable(false);
                 progressDialog.show();

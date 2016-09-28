@@ -14,15 +14,17 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp">
 
-        <TextView
-            android:layout_marginTop="30dp"
+        <ImageView
+            android:src="@drawable/rock_napis"
             android:id="@+id/logo_text_tv"
             android:layout_alignParentTop="true"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
             android:text="@string/rocks"
             android:textAlignment="center"
-            android:textSize="40sp"
+            android:textSize="50sp"
+            android:textStyle="italic"
+            android:layout_marginBottom="20dp"
             tools:targetApi="jelly_bean_mr1" />
 
         <android.support.design.widget.TextInputLayout
@@ -118,7 +120,7 @@
             android:padding="5dp"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
             android:id="@+id/sign_up_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

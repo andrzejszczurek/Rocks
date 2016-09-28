@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linera_layout_password_change"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -12,4 +14,58 @@
     tools:context="pl.assolution.rocks.SettingsActivity"
     tools:showIn="@layout/activity_settings">
 
-</RelativeLayout>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_marginTop="10dp"
+            android:inputType="textPassword"
+            android:id="@+id/actual_settings_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Podaj aktualne hasło"
+            android:clickable="false"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_marginTop="10dp"
+            android:inputType="textPassword"
+            android:id="@+id/recovery_password_settings_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Podaj nowe hasło"
+            android:clickable="false"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_marginTop="10dp"
+            android:inputType="textPassword"
+            android:id="@+id/recovery_re_password_settings_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Powtórz nowe hasło"
+            android:clickable="false"/>
+    </android.support.design.widget.TextInputLayout>
+
+
+    <Button
+        android:id="@+id/change_password_settings_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        android:text="Zmień hasło"
+        android:clickable="false"/>
+
+</LinearLayout>

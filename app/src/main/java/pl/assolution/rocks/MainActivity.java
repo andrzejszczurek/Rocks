@@ -1,6 +1,7 @@
 package pl.assolution.rocks;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import static pl.assolution.rocks.InternetAccessChecker.checkInternetConnection;
 
 public class MainActivity extends AppCompatActivity implements InternetAccessChecker.InternetAccessListener {
 
+    private static final String TAG_USER = "user";
     protected Button viewAllBtn;
     protected Button addItemBtn;
     protected Button searchBtn;
@@ -31,14 +33,20 @@ public class MainActivity extends AppCompatActivity implements InternetAccessChe
         loginManager = rocksApplication.getLoginManager();
         if(loginManager.isUserNotLogged()) {
             finish();
-            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            Intent intent = new Intent(getApplicationContext(), SplashScreenActivity.class);
             startActivity(intent);
             return;
         }
 
+        SharedPreferences sharedPreferences = getSharedPreferences(TAG_USER, MODE_PRIVATE);
+        String author = sharedPreferences.getString(TAG_USER, null);
+        assert author != null;
+        String toobar_label = "Zalogowany jako ".concat(author);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(toobar_label);
+
 
         mainCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.main_coordinator_layout);
 
@@ -51,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements InternetAccessChe
             @Override
             public void onClick(View view) {
                 if(checkInternetConnection(mainCoordinatorLayout, InternetAccessChecker.isConnected())){
-                    Intent intent = new Intent(getApplicationContext(), AllItemsActivity.class);    //Ta sama aktywność?
+                    Intent intent = new Intent(getApplicationContext(), AllItemsActivity.class);
                     intent.putExtra("query", "my");
                     startActivity(intent);
                 }

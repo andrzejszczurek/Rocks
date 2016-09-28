@@ -120,7 +120,7 @@ public class AddCommentActivity extends AppCompatActivity implements InternetAcc
             protected void onPreExecute() {
                 super.onPreExecute();
                 progressDialog = new ProgressDialog(AddCommentActivity.this);
-                progressDialog.setMessage("Usuwanie. Proszę czekać...");
+                progressDialog.setMessage("Dodawanie komentarza...");
                 progressDialog.setIndeterminate(false);
                 progressDialog.setCancelable(false);
                 progressDialog.show();

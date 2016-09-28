@@ -16,65 +16,60 @@
     android:layout_row="2"
     android:layout_column="2">
 
-    <LinearLayout
-        style="?android:attr/buttonBarStyle"
-        android:layout_marginTop="0dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
+    <ImageView
+        android:layout_gravity="center"
+        android:src="@drawable/rock_napis"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:layout_height="150dp" />
+
 
         <Button
-            android:layout_height="match_parent"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="5dp"
+            android:textColor="#8F8F8F"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:textSize="20sp"
+            android:layout_marginBottom="25dp"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
             android:id="@+id/view_all_btn"
-            android:text="Pokaż wszystko" />
+            android:background="@drawable/button_selector"
+            android:text="Pokaż Najnowsze" />
 
         <Button
-            android:layout_height="match_parent"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:textSize="20sp"
+            android:textColor="#8F8F8F"
+            android:layout_marginBottom="25dp"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
             android:id="@+id/view_my_btn"
+            android:background="@drawable/button_selector"
             android:text="Pokaż Moje" />
 
 
-    </LinearLayout>
-
-    <LinearLayout
-        style="?android:attr/buttonBarStyle"
-        android:layout_marginTop="0dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1">
-
         <Button
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_height="match_parent"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:textSize="20sp"
+            android:textColor="#8F8F8F"
+            android:layout_marginBottom="25dp"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
             android:id="@+id/add_item_btn"
+            android:background="@drawable/button_selector"
             android:text="Dodaj wpis" />
 
         <Button
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_height="match_parent"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:textSize="20sp"
+            android:textColor="#8F8F8F"
+            android:layout_marginBottom="25dp"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
             android:id="@+id/search_btn"
+            android:background="@drawable/button_selector"
             android:text="Wszukaj Wpis" />
 
-
-    </LinearLayout>
 </LinearLayout>

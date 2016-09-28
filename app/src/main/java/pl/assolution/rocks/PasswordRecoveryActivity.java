@@ -214,7 +214,7 @@ public class PasswordRecoveryActivity extends AppCompatActivity implements Inter
             protected void onPreExecute() {
                 super.onPreExecute();
                 progressDialog = new ProgressDialog(PasswordRecoveryActivity.this);
-                progressDialog.setMessage("Loading products. Please wait...");
+                progressDialog.setMessage("Weryfikacja....");
                 progressDialog.setIndeterminate(false);
                 progressDialog.setCancelable(false);
                 progressDialog.show();
@@ -267,7 +267,7 @@ public class PasswordRecoveryActivity extends AppCompatActivity implements Inter
             protected void onPreExecute() {
                 super.onPreExecute();
                 progressDialog = new ProgressDialog(PasswordRecoveryActivity.this);
-                progressDialog.setMessage("Loading products. Please wait...");
+                progressDialog.setMessage("Zapisywanie nowego hasła...");
                 progressDialog.setIndeterminate(false);
                 progressDialog.setCancelable(false);
                 progressDialog.show();

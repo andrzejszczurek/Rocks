@@ -40,13 +40,57 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_search"/>
 
-    <Spinner
-        android:id="@+id/search_spinner"
-        android:layout_below="@+id/search_et_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/search_array">
-    </Spinner>
+    <!--<Spinner-->
+        <!--android:id="@+id/search_spinner"-->
+        <!--android:layout_below="@+id/search_et_input"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:entries="@array/search_array">-->
+    <!--</Spinner>-->
 
+    <TextView
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"
+        android:id="@+id/view"
+        android:layout_below="@+id/search_et_input"
+        android:textSize="20sp"
+        android:text="Wyszukaj po:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <RadioGroup
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/view"
+        android:id="@+id/radioGroup"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:layout_marginRight="15dp"
+            android:textSize="20sp"
+            android:text="Nazwa"
+            android:id="@+id/checkbox_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RadioButton
+            android:layout_marginRight="15dp"
+            android:textSize="20sp"
+            android:text="Autor"
+            android:id="@+id/checkbox_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RadioButton
+            android:textSize="20sp"
+            android:text="Typ skały"
+            android:id="@+id/checkbox_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </RadioGroup>
 
 </RelativeLayout>

@@ -1,24 +1,35 @@
 package pl.assolution.rocks;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Spinner;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import static pl.assolution.rocks.InternetAccessChecker.checkInternetConnection;
 
 public class SearchActivity extends AppCompatActivity implements InternetAccessChecker.InternetAccessListener {
 
+    private static final String TAG_DESIGNATION= "designation";
+    private static final String TAG_TYPE= "type";
+    private static final String TAG_AUTHOR= "author";
+
     private CoordinatorLayout coordinatorLayoutItemSearch;
     private RocksApplication.LoginManager loginManager;
+    private EditText searchQuertEt;
+    private RadioGroup radioGroup;
+    protected RadioButton defaultName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +45,32 @@ public class SearchActivity extends AppCompatActivity implements InternetAccessC
         RocksApplication rocksApplication  = (RocksApplication) getApplication();
         rocksApplication.getLoginManager();
         loginManager = rocksApplication.getLoginManager();
+        radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        defaultName = (RadioButton) findViewById(R.id.checkbox_name);
+        defaultName.setChecked(true);
 
-        Spinner searchList = (Spinner) findViewById(R.id.search_spinner);
         ImageButton searchImgBtn = (ImageButton) findViewById(R.id.search_ibtn);
-        EditText searchQuertEt = (EditText) findViewById(R.id.search_et);
+        searchQuertEt = (EditText) findViewById(R.id.search_et);
 
+        searchImgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean isError = false;
+                String query = searchQuertEt.getText().toString();
+
+                if(TextUtils.isEmpty(query)) {
+                    searchQuertEt.setError("To pole jest wymagane");
+                    isError = true;
+                }
+                if(!isError) {
+                    if(checkInternetConnection(coordinatorLayoutItemSearch, InternetAccessChecker.isConnected())) {
+                        searchAndDisplay(query);
+                    }
+                }
+            }
+        });
+
+        checkInternetConnection(coordinatorLayoutItemSearch, InternetAccessChecker.isConnected());
     }
 
     @Override
@@ -95,4 +127,22 @@ public class SearchActivity extends AppCompatActivity implements InternetAccessC
         return super.onOptionsItemSelected(item);
     }
 
+    private void searchAndDisplay(String query) {
+        int checkedId = radioGroup.getCheckedRadioButtonId();
+        Intent intent = new Intent(getApplicationContext(), SearchItemsActivity.class);
+        intent.putExtra("query", query);
+
+        switch(checkedId) {
+            case R.id.checkbox_name:
+                intent.putExtra("tag",TAG_DESIGNATION);
+                break;
+            case R.id.checkbox_author:
+                intent.putExtra("tag", TAG_AUTHOR);
+                break;
+            case R.id.checkbox_type:
+                intent.putExtra("tag", TAG_TYPE);
+                break;
+        }
+        startActivity(intent);
+    }
 }

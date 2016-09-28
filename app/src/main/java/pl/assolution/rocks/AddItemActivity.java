@@ -600,7 +600,7 @@ public class AddItemActivity extends AppCompatActivity implements InternetAccess
             protected void onPreExecute() {
                 super.onPreExecute();
                 progressDialog = new ProgressDialog(AddItemActivity.this);
-                progressDialog.setMessage("Usuwanie. Proszę czekać...");
+                progressDialog.setMessage("Zapisywanie zmian...");
                 progressDialog.setIndeterminate(false);
                 progressDialog.setCancelable(false);
                 progressDialog.show();

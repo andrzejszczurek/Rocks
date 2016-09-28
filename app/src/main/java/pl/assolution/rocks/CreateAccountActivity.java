@@ -115,6 +115,7 @@ public class CreateAccountActivity extends AppCompatActivity implements Internet
         }
         if(!isValidMail(email)) {
             emailEditText.setError("Niepoprawny adres email");
+            isError = true;
         }
         if(TextUtils.isEmpty(password)) {
             passwordEditText.setError("Hasło jest wymagane");
@@ -185,15 +186,16 @@ public class CreateAccountActivity extends AppCompatActivity implements Internet
                     finish();
                 } else {
                     if(errorNumber == -1) {
-                        //Toast.makeText(getApplicationContext(),"Konto o podanej nazwie użytkownika już ", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(),"Konto o podanej nazwie użytkownika już istnieje ", Toast.LENGTH_SHORT).show();
                         loginEditText.getText().clear();
                         passwordEditText.getText().clear();
                         rePasswordEditText.getText().clear();
 
                         String msg = "Nazwa użytkownika zajęta";
-                        final Snackbar snackbar = Snackbar.make(findViewById(R.id.create_login_et), msg ,Snackbar.LENGTH_INDEFINITE);
+                        Snackbar snackbar = Snackbar.make(findViewById(R.id.create_login_et), msg ,Snackbar.LENGTH_INDEFINITE);
                         View snackBarView = snackbar.getView();
-                        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) snackBarView.getLayoutParams();
+//                        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) snackBarView.getLayoutParams();
+                        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) snackBarView.getLayoutParams();
                         params.gravity = (Gravity.TOP);
                         snackBarView.setLayoutParams(params);
                         TextView textView = (TextView) snackBarView.findViewById(android.support.design.R.id.snackbar_text);
@@ -214,13 +216,6 @@ public class CreateAccountActivity extends AppCompatActivity implements Internet
                         textView.setGravity(Gravity.CENTER_HORIZONTAL);
                         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
                         snackbar.show();
-
-
-
-
-
-
-
                     }
                     progressDialog.dismiss();
                 }
@@ -230,7 +225,7 @@ public class CreateAccountActivity extends AppCompatActivity implements Internet
             protected void onPreExecute() {
                 super.onPreExecute();
                 progressDialog = new ProgressDialog(CreateAccountActivity.this);
-                progressDialog.setMessage("Loading products. Please wait...");
+                progressDialog.setMessage("Jeszcze chwilę...");
                 progressDialog.setIndeterminate(false);
                 progressDialog.setCancelable(false);
                 progressDialog.show();
