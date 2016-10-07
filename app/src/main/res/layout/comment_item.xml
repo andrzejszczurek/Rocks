@@ -23,7 +23,7 @@
         android:id="@+id/comment_date_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="12 czerwiec 2016"/>
+        android:text="30 wrzesień 2016"/>
 
     <TextView
         android:textSize="16sp"

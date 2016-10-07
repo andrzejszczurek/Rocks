@@ -153,6 +153,7 @@ public class ItemInfoActivity extends AppCompatActivity implements InternetAcces
                         intent.putExtra(TAG_AUTHOR, item.getAuthor());
                         intent.putExtra(TAG_STRUCTURE, item.getStructure());
                         intent.putExtra(TAG_TEXTURE, item.getTexture());
+                        intent.putExtra(TAG_COMPOSITION, item.getComposition());
                         intent.putExtra(TAG_BINDER, item.getBinder());
                         intent.putExtra(TAG_COLOR, item.getColor());
                         intent.putExtra(TAG_OTHER, item.getOther());

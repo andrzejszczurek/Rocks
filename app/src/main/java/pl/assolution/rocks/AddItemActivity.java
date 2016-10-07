@@ -412,7 +412,7 @@ public class AddItemActivity extends AppCompatActivity implements InternetAccess
     private void uploadItemToServer(String path, final String user, String imageSourceInfo) {
         progressDialog = new ProgressDialog(this);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progressDialog.setMessage("Running backup. Do not unplug drive");
+        progressDialog.setMessage("Dodawanie wpisu...");
         progressDialog.setIndeterminate(true);
         progressDialog.setCancelable(false);
         progressDialog.show();

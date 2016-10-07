@@ -86,6 +86,7 @@ public class SearchItemsActivity extends AppCompatActivity implements InternetAc
                     String id = tv.getText().toString();
                     Intent intent = new Intent(getApplicationContext(), ItemInfoActivity.class);
                     intent.putExtra(TAG_ID_ROCK, id);
+                    intent.putExtra("source", "search");
                     startActivityForResult(intent, 100);
                 }
             }

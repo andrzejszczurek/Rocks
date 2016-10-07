@@ -36,6 +36,7 @@ public class AllItemsActivity extends AppCompatActivity implements InternetAcces
     private Bitmap imageBitmap = null;
     private ItemsAdapter itemsAdapter;
     private static final String TAG_SUCCESS = "success";
+    private static final String TAG_AUTHOR = "author";
     private static final String TAG_ITEMS = "item";
     private static final String TAG_ID_ROCK= "id_rock";
     private static final String TAG_DESIGNATION= "designation";
@@ -145,7 +146,7 @@ public class AllItemsActivity extends AppCompatActivity implements InternetAcces
                             String id_rock = c.getString(TAG_ID_ROCK);
                             String designation = c.getString(TAG_DESIGNATION);
                             String description = c.getString(TAG_DESCRIPTION);
-                            String author = userAdd;//c.getString(TAG_AUTHOR);
+                            String author = c.getString(TAG_AUTHOR);
                             String url = c.getString(TAG_URL_IMAGE);
                             String imgUrl = "http://student.agh.edu.pl/~aszczure/"+url;
 

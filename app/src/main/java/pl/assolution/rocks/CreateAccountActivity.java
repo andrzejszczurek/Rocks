@@ -1,6 +1,7 @@
 package pl.assolution.rocks;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -244,6 +245,12 @@ public class CreateAccountActivity extends AppCompatActivity implements Internet
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+
+        if(id == R.id.action_about) {
+            Intent intent = new Intent(getApplicationContext(), AboutActivity.class);
+            startActivity(intent);
+        }
+
         return id == R.id.action_about || super.onOptionsItemSelected(item);
     }
 }
